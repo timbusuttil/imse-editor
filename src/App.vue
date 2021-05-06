@@ -11,17 +11,25 @@ export default {
   name: 'App',
   data() {
     return {
-      input: 'jmbk gnbk\nk mik t:',
+      input: 'jemboke gonboke\nki maika t:a',
       validCharacters: [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j:', 'k', 'k:', 'l', 'm', 'n', 'n:', 'o', 'r', 's', 's:', 't', 't:', 'v'],
     }
   },
   computed: {
     parsedInput() {
-      // TODO: try parsing from unconverted text
-      // remove vowels unless word initial or not first in a multi vowel run (i think?)
+      // convert to lowercase
+      let input = this.input.toLowerCase();
 
-      // split into lines
-      const lines = this.input.toLowerCase().split('\n');
+      // convert to only consonants and syllable-intiial vowels
+      // (ie remove any vowel following a consonant)
+      let regex = /(?<=[bcdfghjklmnpqrstvwxyz:])[aeiou]/gm;
+      input = input.replaceAll(regex, '');
+
+      // remove any hyphen characters
+      input = input.replaceAll('-', '');
+
+      // split into lines to return in array
+      const lines = input.split('\n');
 
       return lines.map(line => {
         // split each line into characters
@@ -45,12 +53,11 @@ export default {
 
           // check for invalid characters
           if (!this.validCharacters.includes(char)) {
-            // TODO: convert y to j:
             splitLine[i] += " ! invalid character";
           }
         });
 
-        // check for word boundaries
+        // check for word boundaries and remove whitespace
         splitLine.forEach((char, i) => {
           if (char === ' ') {
             splitLine[i-1] += '/wordend';

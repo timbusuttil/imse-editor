@@ -103,37 +103,29 @@
 <script>
 import { saveSvgAsPng } from 'save-svg-as-png';
 
+import { parse } from '@/parse'
+
 export default {
   name: 'App',
   data() {
     return {
       input: 'jemboke gonboke\nki maika t:a\nodenda adenda\nki reva t:a',
-      validCharacters: [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j:', 'k', 'k:', 'l', 'm', 'n', 'n:', 'o', 'r', 's', 's:', 't', 't:', 'v'],
       fgCol: '#EFECCA',
       bgCol: '#A9CBB7',
       lineOffsets: [0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       showAnnotations: false,
       textScale: 50,
-      canvasDimensions: { x: 700, y: 500 },
-      directPos: { x: 227.5, y: 97.5 },
+      canvasDimensions: { x: 500, y: 500 },
+      directPos: { x: 127.5, y: 87.5 },
       useAutoPos: false,
+      forceRecalc: 0,
     }
   },
   computed: {
     autoPos() {
-      // console.log('canvas dims');
-      // console.log(this.canvasDimensions.x, this.canvasDimensions.y);
-      // console.log('bounding box dims');
-      // console.log(this.$refs.allLines.getBoundingClientRect().width, this.$refs.allLines.getBoundingClientRect().height);
-      // console.log('y offset');
-      // console.log(this.posOffsetY);
-      // console.log('result');
-      // console.log({
-      //   x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
-      //   y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2,
-      // });
+      this.forceRecalc;
+      console.log('calc autopos');
 
-      // the below works, except need to adjust for diff between top of first line and top of highest line
       const firstLineY = document.getElementById('line-group-0').getBoundingClientRect().y;
       let highestLineY = 99999;
       this.parsedInput.forEach((line, i) => {
@@ -150,13 +142,17 @@ export default {
 
       console.log({
         x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
-        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff / 2,
+        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff,
       });
 
       return {
         x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
-        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff / 2,
+        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff,
       }
+      // return {
+      //   x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
+      //   y: -diff + (this.canvasDimensions.y + this.$refs.allLines.getBoundingClientRect().height) / 2,
+      // }
     },
     position() {
       if (this.useAutoPos) {
@@ -178,67 +174,7 @@ export default {
       return result;
     },
     parsedInput() {
-      // convert to lowercase
-      let input = this.input.toLowerCase();
-
-      // convert to only consonants and syllable-intiial vowels
-      // (ie remove any vowel following a consonant)
-      let regex = /(?<=[bcdfghjklmnpqrstvwxyz:])[aeiou]/gm;
-      input = input.replaceAll(regex, '');
-
-      // remove any punctuation characters
-      input = input.replaceAll('-', '');
-      input = input.replaceAll(',', '');
-
-      // TODO: accept some character aliases
-      // accept y as an alias for j:
-      input = input.replaceAll('y', 'j:');
-      // decide whether c & c: or k & k: is canonical, and accept one as alias for the other
-
-      // split into lines to return in array
-      const lines = input.split('\n');
-
-      return lines.map(line => {
-        // split each line into characters
-        const splitLine = line.split('');
-
-        // check for soft characters
-        splitLine.forEach((char, i) => {
-          if (char === ':') {
-            splitLine[i-1] += splitLine.splice(i, 1);
-          }
-        });
-
-        splitLine.forEach((char, i) => {
-          // set initial and terminal
-          if (i === 0) {
-            splitLine[i] += "/initial";
-          }
-          if (i === splitLine.length-1) {
-            splitLine[i] += "/terminal";
-          }
-
-          // check for invalid characters
-          if (!this.validCharacters.includes(char)) {
-            splitLine[i] += " ! invalid character";
-          }
-        });
-
-        // check for word boundaries and remove whitespace
-        splitLine.forEach((char, i) => {
-          if (char === ' ') {
-            splitLine[i-1] += '/wordend';
-            splitLine.splice(i, 1);
-          }
-        });
-
-        // possible codes to parse
-        // /initial:     add initial loop
-        // /terminal:    add terminal loop & no character break line
-        // no /wordend:  regular character break line
-        // /wordend:     word break line instead of character break line
-        return splitLine;
-      });
+      return parse(this.input);
     },
   },
   methods: {
@@ -261,6 +197,14 @@ export default {
       this.fgCol = this.bgCol;
       this.bgCol = temp;
     },
+  },
+  watch: {
+    lineOffsets() {
+      this.forceRecalc++;
+    },
+    input() {
+      this.forceRecalc++;
+    }
   }
 }
 </script>

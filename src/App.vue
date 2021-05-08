@@ -57,9 +57,9 @@
           <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
             <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
             <use v-if="character.includes('initial')" href="#initial" :fill="fgCol"></use>
-            <use v-if="character.includes('terminal')" href="#terminal" :fill="fgCol"></use>
-            <use v-if="character.includes('wordend')" href="#wordbreak" :fill="fgCol"></use>
-            <use v-if="!character.includes('wordend') && !character.includes('terminal')" href="#characterbreak" :fill="fgCol"></use>
+            <use v-if="character.includes('terminal')" :href="specialChar('terminal', character)" :fill="fgCol"></use>
+            <use v-if="character.includes('wordend')" :href="specialChar('wordbreak', character)" :fill="fgCol"></use>
+            <use v-if="!character.includes('wordend') && !character.includes('terminal')" :href="specialChar('charbreak', character)" :fill="fgCol"></use>
             <text v-show="showAnnotations" x="20" y="35" fill="red">{{ character }}</text>
           </g>
         </g>
@@ -153,6 +153,13 @@ export default {
     },
   },
   methods: {
+    specialChar(type, character) {
+      let terminalPosition = 4;
+      if (['e', 'i', 'j', 'j.', 'l'].includes(character.split('/')[0])) terminalPosition = 3;
+      if (['b', 's', 's.'].includes(character.split('/')[0])) terminalPosition = 2;
+      if (['v'].includes(character.split('/')[0])) terminalPosition = 1;
+      return `#${type}${terminalPosition}`
+    },
     exportAsPng() {
       saveSvgAsPng(this.$refs.svgContainer, "imse export.png");
     },

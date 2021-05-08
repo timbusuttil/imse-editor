@@ -1,36 +1,57 @@
 <template>
   <div id="app">
-    <!-- text input area -->
+    <!-- input -->
     <textarea v-model="input" name="name" rows="8" cols="80"></textarea>
     <!-- <pre>{{ parsedInput }}</pre> -->
 
     <!-- controls -->
+    <hr>
     <div>
+      <p>Colours</p>
       <input type="color" name="fgCol" v-model="fgCol">
       <label for="fgCol">Foreground Colour</label><br>
       <input type="color" name="bgCol" v-model="bgCol">
       <label for="bgCol">Background Colour</label><br>
       <button @click="swapColours">Swap colours</button><br>
-      <label>Line offsets</label><br>
+      <hr>
+      <p>Scaling & Positioning</p>
+      <input type="number" name="canvasWidth" min="0" v-model="canvasDimensions.x">
+      <label for="canvasWidth">Canvas Width</label><br>
+      <input type="number" name="canvasHeight" min="0" v-model="canvasDimensions.y">
+      <label for="canvasHeight">Canvas Height</label><br>
+      <input type="number" name="textSize" v-model="textScale">
+      <label for="textSize">Text Size</label><br>
+      <input type="number" name="xPos" v-model.number="directPos.x">
+      <label for="xPos">Manual X Position</label><br>
+      <input type="number" name="yPos" v-model.number="directPos.y">
+      <label for="yPos">Manual Y Position</label><br>
+      <input type="checkbox" id="autoCenter" v-model="useAutoPos">
+      <label for="autoCenter">Auto-center (y axis currently broken)</label><br>
+      <p>Line offsets</p>
       <div v-for="(line, i) in parsedInput" :key="`line-input-${i}`">
         <input type="number" :id="`line-${i}`" v-model="lineOffsets[i]">
         <label :for="`line-${i}`">Line {{ i }}</label>
       </div>
+      <hr>
+      <p>Extras</p>
       <input type="checkbox" id="showAnnotations" v-model="showAnnotations">
       <label for="showAnnotations">Show Annotations</label><br>
+      <hr>
+      <p>Export</p>
       <button @click="exportAsSvg">Export as SVG</button><br>
       <button @click="exportAsPng">Export as PNG</button><br>
     </div>
+    <hr>
 
     <!-- svg rendering -->
     <svg
       ref="svgContainer"
       xmlns="http://www.w3.org/2000/svg" version="1.1"
-      width="500"
-      height="500"
+      :width="canvasDimensions.x"
+      :height="canvasDimensions.y"
       :style="{ backgroundColor: bgCol }"
     >
-      <g transform="scale(0.5) translate(100, 200)">
+      <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
         <g v-for="(line, i) in parsedInput" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
           <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
             <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
@@ -89,11 +110,53 @@ export default {
       validCharacters: [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j:', 'k', 'k:', 'l', 'm', 'n', 'n:', 'o', 'r', 's', 's:', 't', 't:', 'v'],
       fgCol: '#EFECCA',
       bgCol: '#A9CBB7',
-      lineOffsets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      lineOffsets: [0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       showAnnotations: false,
+      textScale: 50,
+      canvasDimensions: { x: 700, y: 500 },
+      directPos: { x: 227.5, y: 97.5 },
+      useAutoPos: false,
     }
   },
   computed: {
+    autoPos() {
+      console.log('poy', this.posOffsetY);
+      // console.log('canvas dims');
+      // console.log(this.canvasDimensions.x, this.canvasDimensions.y);
+      // console.log('bounding box dims');
+      // console.log(this.$refs.allLines.getBoundingClientRect().width, this.$refs.allLines.getBoundingClientRect().height);
+      // console.log('y offset');
+      // console.log(this.posOffsetY);
+      // console.log('result');
+      // console.log({
+      //   x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
+      //   y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2,
+      // });
+
+      return {
+        x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
+        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2,
+      }
+    },
+    position() {
+      if (this.useAutoPos) {
+        return this.autoPos;
+      } else {
+        return this.directPos;
+        // return {
+        //   x: this.directPos.x,
+        //   y: this.directPos.y + -this.posOffsetY
+        // };
+      }
+    },
+    posOffsetY() {
+      let result = 9999999;
+      this.parsedInput.forEach((line, i) => {
+        const yOffset = i * -20 + this.lineOffsets[i] * 80;
+        if (yOffset < result) result = yOffset;
+      });
+      return result;
+    },
     parsedInput() {
       // convert to lowercase
       let input = this.input.toLowerCase();

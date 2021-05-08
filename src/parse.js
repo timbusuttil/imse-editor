@@ -29,7 +29,8 @@ export function parse(rawInput) {
     // check for soft characters
     splitLine.forEach((char, i) => {
       if (char === ':') {
-        splitLine[i-1] += splitLine.splice(i, 1);
+        splitLine[i-1] += '.';
+        splitLine.splice(i, 1);
       }
     });
 

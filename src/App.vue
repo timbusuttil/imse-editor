@@ -85,8 +85,10 @@ export default {
   data() {
     return {
       input: 'jemboke gonboke\nki maika t:a\nodenda adenda\nki reva t:a',
-      fgCol: '#EFECCA',
-      bgCol: '#A9CBB7',
+      fgCol: '#FABC3C',
+      bgCol: '#444054',
+      // fgCol: '#EFECCA',
+      // bgCol: '#A9CBB7',
       lineOffsets: [0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       showAnnotations: false,
       textScale: 50,

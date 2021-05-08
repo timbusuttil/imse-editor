@@ -10,6 +10,7 @@
       <label for="fgCol">Foreground Colour</label><br>
       <input type="color" name="bgCol" v-model="bgCol">
       <label for="bgCol">Background Colour</label><br>
+      <button @click="swapColours">Swap colours</button><br>
       <label>Line offsets</label><br>
       <div v-for="(line, i) in parsedInput" :key="`line-input-${i}`">
         <input type="number" :id="`line-${i}`" v-model="lineOffsets[i]">
@@ -170,7 +171,12 @@ export default {
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
-    }
+    },
+    swapColours() {
+      const temp = this.fgCol;
+      this.fgCol = this.bgCol;
+      this.bgCol = temp;
+    },
   }
 }
 </script>

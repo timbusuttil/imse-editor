@@ -52,7 +52,7 @@
       xmlns="http://www.w3.org/2000/svg" version="1.1"
       :width="canvasDimensions.x"
       :height="canvasDimensions.y"
-      :style="{ backgroundColor: bgCol }"
+      :style="{ backgroundColor: bgCol, minWidth: `${canvasDimensions.x}px` }"
     >
       <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
         <g v-for="(line, i) in parsedInput" :id="`line-group-${i}`" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
@@ -216,11 +216,10 @@ html {
   display: flex;
   height: 100vh;
   padding: 20px;
-  overflow-y: hidden;
 }
 
 #controls-parent {
-  width: 350px;
+  min-width: 350px;
   padding-right: 20px;
   height: 100%;
   display: flex;

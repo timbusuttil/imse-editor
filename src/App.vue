@@ -1,47 +1,48 @@
 <template>
   <div id="app">
-    <!-- input -->
-    <textarea v-model="input" name="name" rows="8" cols="80"></textarea>
-    <!-- <pre>{{ parsedInput }}</pre> -->
+    <div id="controls-parent">
+      <!-- input -->
+      <textarea v-model="input" rows="8"></textarea>
+      <!-- <pre>{{ parsedInput }}</pre> -->
 
-    <!-- controls -->
-    <hr>
-    <div>
-      <p>Colours</p>
-      <input type="color" name="fgCol" v-model="fgCol">
-      <label for="fgCol">Foreground Colour</label><br>
-      <input type="color" name="bgCol" v-model="bgCol">
-      <label for="bgCol">Background Colour</label><br>
-      <button @click="swapColours">Swap colours</button><br>
+      <!-- controls -->
       <hr>
-      <p>Scaling & Positioning</p>
-      <input type="number" name="canvasWidth" min="0" v-model="canvasDimensions.x">
-      <label for="canvasWidth">Canvas Width</label><br>
-      <input type="number" name="canvasHeight" min="0" v-model="canvasDimensions.y">
-      <label for="canvasHeight">Canvas Height</label><br>
-      <input type="number" name="textSize" v-model="textScale">
-      <label for="textSize">Text Size</label><br>
-      <input type="number" name="xPos" v-model.number="directPos.x">
-      <label for="xPos">Manual X Position</label><br>
-      <input type="number" name="yPos" v-model.number="directPos.y">
-      <label for="yPos">Manual Y Position</label><br>
-      <input type="checkbox" id="autoCenter" v-model="useAutoPos">
-      <label for="autoCenter">Auto-center (y axis currently broken)</label><br>
-      <p>Line offsets</p>
-      <div v-for="(line, i) in parsedInput" :key="`line-input-${i}`">
-        <input type="number" :id="`line-${i}`" v-model="lineOffsets[i]">
-        <label :for="`line-${i}`">Line {{ i }}</label>
+      <div id="controls">
+        <p>Colours</p>
+        <input type="color" name="fgCol" v-model="fgCol">
+        <label for="fgCol">Foreground Colour</label><br>
+        <input type="color" name="bgCol" v-model="bgCol">
+        <label for="bgCol">Background Colour</label><br>
+        <button @click="swapColours">Swap colours</button><br>
+        <hr>
+        <p>Scaling & Positioning</p>
+        <input type="number" name="canvasWidth" min="0" v-model="canvasDimensions.x">
+        <label for="canvasWidth">Canvas Width</label><br>
+        <input type="number" name="canvasHeight" min="0" v-model="canvasDimensions.y">
+        <label for="canvasHeight">Canvas Height</label><br>
+        <input type="number" name="textSize" v-model="textScale">
+        <label for="textSize">Text Size</label><br>
+        <input type="number" name="xPos" v-model.number="directPos.x">
+        <label for="xPos">Manual X Position</label><br>
+        <input type="number" name="yPos" v-model.number="directPos.y">
+        <label for="yPos">Manual Y Position</label><br>
+        <input type="checkbox" id="autoCenter" v-model="useAutoPos">
+        <label for="autoCenter">Auto-center (y axis currently broken)</label><br>
+        <p>Line offsets</p>
+        <div v-for="(line, i) in parsedInput" :key="`line-input-${i}`">
+          <input type="number" :id="`line-${i}`" v-model="lineOffsets[i]">
+          <label :for="`line-${i}`">Line {{ i+1 }}</label>
+        </div>
+        <hr>
+        <p>Extras</p>
+        <input type="checkbox" id="showAnnotations" v-model="showAnnotations">
+        <label for="showAnnotations">Show Annotations</label><br>
+        <hr>
+        <p>Export</p>
+        <button @click="exportAsSvg">Export as SVG</button><br>
+        <button @click="exportAsPng">Export as PNG</button><br>
       </div>
-      <hr>
-      <p>Extras</p>
-      <input type="checkbox" id="showAnnotations" v-model="showAnnotations">
-      <label for="showAnnotations">Show Annotations</label><br>
-      <hr>
-      <p>Export</p>
-      <button @click="exportAsSvg">Export as SVG</button><br>
-      <button @click="exportAsPng">Export as PNG</button><br>
     </div>
-    <hr>
 
     <!-- svg rendering -->
     <svg
@@ -52,7 +53,7 @@
       :style="{ backgroundColor: bgCol }"
     >
       <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
-        <g v-for="(line, i) in parsedInput" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
+        <g v-for="(line, i) in parsedInput" :id="`line-group-${i}`" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
           <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
             <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
             <use v-if="character.includes('initial')" href="#initial" :fill="fgCol"></use>
@@ -120,7 +121,6 @@ export default {
   },
   computed: {
     autoPos() {
-      console.log('poy', this.posOffsetY);
       // console.log('canvas dims');
       // console.log(this.canvasDimensions.x, this.canvasDimensions.y);
       // console.log('bounding box dims');
@@ -133,9 +133,29 @@ export default {
       //   y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2,
       // });
 
+      // the below works, except need to adjust for diff between top of first line and top of highest line
+      const firstLineY = document.getElementById('line-group-0').getBoundingClientRect().y;
+      let highestLineY = 99999;
+      this.parsedInput.forEach((line, i) => {
+        let lineY = document.getElementById(`line-group-${i}`).getBoundingClientRect().y;
+        if (lineY < highestLineY) highestLineY = lineY;
+      });
+
+      console.log('hly', highestLineY);
+      console.log('fly', firstLineY);
+
+      const diff = highestLineY - firstLineY;
+
+      console.log('diff', diff);
+
+      console.log({
+        x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
+        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff / 2,
+      });
+
       return {
         x: this.canvasDimensions.x / 2 - this.$refs.allLines.getBoundingClientRect().width / 2,
-        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2,
+        y: this.canvasDimensions.y / 2 - this.$refs.allLines.getBoundingClientRect().height / 2 - diff / 2,
       }
     },
     position() {
@@ -166,8 +186,9 @@ export default {
       let regex = /(?<=[bcdfghjklmnpqrstvwxyz:])[aeiou]/gm;
       input = input.replaceAll(regex, '');
 
-      // remove any hyphen characters
+      // remove any punctuation characters
       input = input.replaceAll('-', '');
+      input = input.replaceAll(',', '');
 
       // TODO: accept some character aliases
       // accept y as an alias for j:
@@ -245,7 +266,39 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
 html {
   background: #fce4ec;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  overflow-y: hidden;
+}
+
+#controls-parent {
+  width: 350px;
+  padding-right: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#controls {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+textarea {
+  width: 100%;
 }
 </style>

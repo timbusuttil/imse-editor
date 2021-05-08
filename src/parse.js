@@ -1,4 +1,4 @@
-const validCharacters = [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j:', 'k', 'k:', 'l', 'm', 'n', 'n:', 'o', 'r', 's', 's:', 't', 't:', 'v'];
+const validCharacters = [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j.', 'k', 'k.', 'l', 'm', 'n', 'n.', 'o', 'r', 's', 's.', 't', 't.', 'v'];
 
 export function parse(rawInput) {
 

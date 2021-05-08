@@ -4,6 +4,7 @@
       <!-- input -->
       <textarea v-model="input" rows="8"></textarea>
       <button @click="showParsed = !showParsed">{{ showParsed ? 'Hide' : 'Show' }} parsed</button>
+      <pre v-show="showParsed">{{ cleanedInput }}</pre>
       <pre v-show="showParsed">{{ parsedInput }}</pre>
 
       <!-- controls -->
@@ -74,7 +75,7 @@
 
 <script>
 import { saveSvgAsPng } from 'save-svg-as-png';
-import { parse } from '@/parse';
+import { parse, clean } from '@/parse';
 
 import CharacterDefs from '@/components/CharacterDefs';
 
@@ -152,8 +153,11 @@ export default {
       });
       return result;
     },
+    cleanedInput() {
+      return clean(this.input);
+    },
     parsedInput() {
-      return parse(this.input);
+      return parse(clean(this.input));
     },
   },
   methods: {
@@ -230,5 +234,6 @@ html {
 
 textarea {
   width: 100%;
+  min-height: 120px;
 }
 </style>

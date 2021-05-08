@@ -1,23 +1,28 @@
 const validCharacters = [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j.', 'k', 'k.', 'l', 'm', 'n', 'n.', 'o', 'r', 's', 's.', 't', 't.', 'v'];
 
-export function parse(rawInput) {
+function clean(rawInput) {
+    // convert to lowercase
+    let input = rawInput.toLowerCase();
 
-  // convert to lowercase
-  let input = rawInput.toLowerCase();
+    // convert to only consonants and syllable-intiial vowels
+    // (ie remove any vowel following a consonant)
+    let regex = /(?<=[bcdfghjklmnpqrstvwxyz:])[aeiou]/gm;
+    input = input.replaceAll(regex, '');
 
-  // convert to only consonants and syllable-intiial vowels
-  // (ie remove any vowel following a consonant)
-  let regex = /(?<=[bcdfghjklmnpqrstvwxyz:])[aeiou]/gm;
-  input = input.replaceAll(regex, '');
+    // remove any punctuation characters
+    input = input.replaceAll('-', '');
+    input = input.replaceAll(',', '');
 
-  // remove any punctuation characters
-  input = input.replaceAll('-', '');
-  input = input.replaceAll(',', '');
+    // TODO: accept some character aliases
+    // accept y as an alias for j:
+    input = input.replaceAll('y', 'j:');
+    // decide whether c & c: or k & k: is canonical, and accept one as alias for the other
 
-  // TODO: accept some character aliases
-  // accept y as an alias for j:
-  input = input.replaceAll('y', 'j:');
-  // decide whether c & c: or k & k: is canonical, and accept one as alias for the other
+    return input;
+}
+
+function parse(cleanInput) {
+  let input = cleanInput;
 
   // split into lines to return in array
   const lines = input.split('\n');
@@ -64,4 +69,9 @@ export function parse(rawInput) {
     // /wordend:     word break line instead of character break line
     return splitLine;
   });
+}
+
+export {
+  clean,
+  parse
 }

@@ -10,9 +10,15 @@
       <label for="fgCol">Foreground Colour</label><br>
       <input type="color" name="bgCol" v-model="bgCol">
       <label for="bgCol">Background Colour</label><br>
+      <label>Line offsets</label><br>
+      <div v-for="(line, i) in parsedInput" :key="`line-input-${i}`">
+        <input type="number" :id="`line-${i}`" v-model="lineOffsets[i]">
+        <label :for="`line-${i}`">Line {{ i }}</label>
+      </div>
       <input type="checkbox" id="showAnnotations" v-model="showAnnotations">
       <label for="showAnnotations">Show Annotations</label><br>
-      <button @click="exportSvg">Export SVG</button><br>
+      <button @click="exportAsSvg">Export as SVG</button><br>
+      <button @click="exportAsPng">Export as PNG</button><br>
     </div>
 
     <!-- svg rendering -->
@@ -24,9 +30,8 @@
       :style="{ backgroundColor: bgCol }"
     >
       <g transform="scale(0.5) translate(100, 200)">
-        <g v-for="(line, i) in parsedInput" :transform="`translate(${i * 120}, ${i * -20})`" :key="i" >
+        <g v-for="(line, i) in parsedInput" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
           <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
-            <!-- <rect  width="90" height="50" :fill="fgCol" /> -->
             <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
             <use v-if="character.includes('initial')" href="#initial" :fill="fgCol"></use>
             <use v-if="character.includes('terminal')" href="#terminal" :fill="fgCol"></use>
@@ -73,6 +78,8 @@
 </template>
 
 <script>
+import { saveSvgAsPng } from 'save-svg-as-png';
+
 export default {
   name: 'App',
   data() {
@@ -81,6 +88,7 @@ export default {
       validCharacters: [' ', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'j:', 'k', 'k:', 'l', 'm', 'n', 'n:', 'o', 'r', 's', 's:', 't', 't:', 'v'],
       fgCol: '#EFECCA',
       bgCol: '#A9CBB7',
+      lineOffsets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       showAnnotations: false,
     }
   },
@@ -149,7 +157,10 @@ export default {
     },
   },
   methods: {
-    exportSvg() {
+    exportAsPng() {
+      saveSvgAsPng(this.$refs.svgContainer, "imse export.png");
+    },
+    exportAsSvg() {
       const svgData = this.$refs.svgContainer.outerHTML;
       const svgBlob = new Blob([svgData], {type:"image/svg+xml;charset=utf-8"});
       const svgUrl = URL.createObjectURL(svgBlob);

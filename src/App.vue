@@ -3,7 +3,8 @@
     <div id="controls-parent">
       <!-- input -->
       <textarea v-model="input" rows="8"></textarea>
-      <!-- <pre>{{ parsedInput }}</pre> -->
+      <button @click="showParsed = !showParsed">{{ showParsed ? 'Hide' : 'Show' }} parsed</button>
+      <pre v-show="showParsed">{{ parsedInput }}</pre>
 
       <!-- controls -->
       <hr>
@@ -96,6 +97,7 @@ export default {
       directPos: { x: 127.5, y: 87.5 },
       useAutoPos: false,
       forceRecalc: 0,
+      showParsed: false,
     }
   },
   computed: {

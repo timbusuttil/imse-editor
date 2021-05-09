@@ -49,6 +49,8 @@
         <p>Export</p>
         <button @click="exportAsSvg">Export as SVG</button><br>
         <button @click="exportAsPng">Export as PNG</button><br>
+        <hr>
+        <p><a href="https://www.notion.so/Imse-ta-Vira-ka-Os-o-d3b2cc8a0fa2474f9af19e4fb1da05eb" target="_blank">Imse ta Vira ka Os-o</a> designed by <a href="https://twitter.com/timbusuttil" target="_blank">Tim Busuttil</a></p>
       </div>
     </div>
 

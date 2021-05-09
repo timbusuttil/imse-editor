@@ -78,6 +78,7 @@
       <!-- character defs -->
       <CharacterDefs :font="selectedFont.key" ref="charDefs" />
     </svg>
+    <!-- <Dictionary /> -->
   </div>
 </template>
 
@@ -86,11 +87,13 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 import { parse, clean } from '@/parse';
 
 import CharacterDefs from '@/components/CharacterDefs';
+// import Dictionary from '@/components/Dictionary';
 
 export default {
   name: 'App',
   components: {
     CharacterDefs,
+    // Dictionary,
   },
   data() {
     return {

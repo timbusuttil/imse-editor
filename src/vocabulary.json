@@ -1,0 +1,105 @@
+{
+  "derivations": [
+    {
+      "name": "plurality",
+      "key": "p",
+      "patterns": [
+        "-e"
+      ]
+    },
+    {
+      "name": "chirality",
+      "key": "c",
+      "patterns": [
+        "o-",
+        "a-",
+      ]
+    }
+  ],
+  "words": [
+    {
+      "imse": "nanka",
+      "gloss": "head",
+      "derivations": ["p"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "ilka",
+      "gloss": "neck",
+      "derivations": ["p"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "vij:a",
+      "gloss": "shoulder",
+      "derivations": ["p", "c"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "hanat",
+      "gloss": "arm, from branch (of a tree)",,
+      "derivations": ["p", "c"],
+      "tags": ["body", "metaphor"]
+    },
+    {
+      "imse": "hañate",
+      "gloss": "bundled branches, restrained arms",
+      "derivations": ["p"],
+      "tags": ["body", "metaphor"]
+    },
+    {
+      "imse": "lej:a",
+      "gloss": "hand",
+      "derivations": ["p", "c"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "leja",
+      "gloss": "an unrestrained hand, striking or snatching",
+      "derivations": ["p", "c"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "egahon",
+      "gloss": "lit. ‘mother of breath’, torso",
+      "derivations": ["p", "c"],
+      "tags": ["body", "metaphor"]
+    },
+    {
+      "imse": "neyri",
+      "gloss": "stomach",
+      "derivations": ["p"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "okare",
+      "gloss": "lit. eels, informal meaning guts",
+      "derivations": ["p"],
+      "tags": ["body", "metaphor", "informal"]
+    },
+    {
+      "imse": "nejri",
+      "gloss": "unrestrained/wobbly stomach",
+      "derivations": ["p"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "akama",
+      "gloss": "hip",
+      "derivations": ["p", "c"],
+      "tags": ["body"]
+    },
+    {
+      "imse": "jemboka",
+      "gloss": "leg, from root (of a tree)",
+      "derivations": ["p", "c"],
+      "tags": ["body", "metaphor"]
+    },
+    {
+      "imse": "denda",
+      "gloss": "foot",
+      "derivations": ["p"],
+      "tags": ["body"]
+    },
+  ]
+}

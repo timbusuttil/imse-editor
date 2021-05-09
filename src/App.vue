@@ -17,6 +17,12 @@
         <label for="bgCol">Background Colour</label><br>
         <button @click="swapColours">Swap colours</button><br>
         <hr>
+        <p>Font</p>
+        <select v-model="selectedFont">
+          <option v-for="font in fonts" :value="font" :key="font.key">{{ font.displayName }}</option>
+        </select>
+        <p>Designed by {{ selectedFont.designedBy }}</p>
+        <hr>
         <p>Scaling & Positioning</p>
         <input type="number" name="canvasWidth" min="0" v-model="canvasDimensions.x">
         <label for="canvasWidth">Canvas Width</label><br>
@@ -68,7 +74,7 @@
       </g>
 
       <!-- character defs -->
-      <CharacterDefs />
+      <CharacterDefs :font="selectedFont.key" ref="charDefs" />
     </svg>
   </div>
 </template>
@@ -87,8 +93,10 @@ export default {
   data() {
     return {
       input: 'jemboke gonboke\nki maika t:a\nodenda adenda\nki reva t:a',
-      fgCol: '#FABC3C',
-      bgCol: '#444054',
+      fgCol: '#F18F01',
+      bgCol: '#006E90',
+      // fgCol: '#FABC3C',
+      // bgCol: '#444054',
       // fgCol: '#EFECCA',
       // bgCol: '#A9CBB7',
       lineOffsets: [0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -99,6 +107,8 @@ export default {
       useAutoPos: false,
       forceRecalc: 0,
       showParsed: false,
+      selectedFont: 'original',
+      fonts: [],
     }
   },
   computed: {
@@ -195,6 +205,10 @@ export default {
     input() {
       this.forceRecalc++;
     }
+  },
+  mounted() {
+    this.fonts = this.$refs.charDefs.fonts;
+    this.selectedFont = this.fonts.find(font => font.key === 'original');
   }
 }
 </script>

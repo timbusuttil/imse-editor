@@ -150,7 +150,7 @@ export default {
           displayName: 'Imse Rounded',
           key: 'rounded',
           numColours: 1,
-          designedBy: 'Caro Ascersion',
+          designedBy: 'Caro Asercion',
         },
       ]
     }

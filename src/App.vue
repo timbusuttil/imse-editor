@@ -54,31 +54,33 @@
       </div>
     </div>
 
-    <!-- svg rendering -->
-    <svg
-      ref="svgContainer"
-      xmlns="http://www.w3.org/2000/svg" version="1.1"
-      :width="canvasDimensions.x"
-      :height="canvasDimensions.y"
-      :style="{ backgroundColor: bgCol, minWidth: `${canvasDimensions.x}px` }"
-    >
-      <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
-        <g v-for="(line, i) in parsedInput" :id="`line-group-${i}`" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
-          <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
-            <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
-            <use v-if="character.includes('initial')" href="#initial" :fill="fgCol"></use>
-            <use v-if="character.includes('terminal')" :href="specialChar('terminal', character)" :fill="fgCol"></use>
-            <use v-if="character.includes('wordend')" :href="specialChar('wordbreak', character)" :fill="fgCol"></use>
-            <use v-if="!character.includes('wordend') && !character.includes('terminal')" :href="specialChar('charbreak', character)" :fill="fgCol"></use>
-            <text v-show="showAnnotations" x="20" y="35" fill="red">{{ character }}</text>
+    <div class="">
+      <!-- svg rendering -->
+      <svg
+        ref="svgContainer"
+        xmlns="http://www.w3.org/2000/svg" version="1.1"
+        :width="canvasDimensions.x"
+        :height="canvasDimensions.y"
+        :style="{ backgroundColor: bgCol, minWidth: `${canvasDimensions.x}px` }"
+      >
+        <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
+          <g v-for="(line, i) in parsedInput" :id="`line-group-${i}`" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
+            <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
+              <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
+              <use v-if="character.includes('initial')" href="#initial" :fill="fgCol"></use>
+              <use v-if="character.includes('terminal')" :href="specialChar('terminal', character)" :fill="fgCol"></use>
+              <use v-if="character.includes('wordend')" :href="specialChar('wordbreak', character)" :fill="fgCol"></use>
+              <use v-if="!character.includes('wordend') && !character.includes('terminal')" :href="specialChar('charbreak', character)" :fill="fgCol"></use>
+              <text v-show="showAnnotations" x="20" y="35" fill="red">{{ character }}</text>
+            </g>
           </g>
         </g>
-      </g>
 
-      <!-- character defs -->
-      <CharacterDefs :font="selectedFont.key" ref="charDefs" />
-    </svg>
-    <!-- <Dictionary /> -->
+        <!-- character defs -->
+        <CharacterDefs :font="selectedFont.key" ref="charDefs" />
+      </svg>
+      <Dictionary />
+    </div>
   </div>
 </template>
 
@@ -87,13 +89,13 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 import { parse, clean } from '@/parse';
 
 import CharacterDefs from '@/components/CharacterDefs';
-// import Dictionary from '@/components/Dictionary';
+import Dictionary from '@/components/Dictionary';
 
 export default {
   name: 'App',
   components: {
     CharacterDefs,
-    // Dictionary,
+    Dictionary,
   },
   data() {
     return {

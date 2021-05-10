@@ -12,94 +12,126 @@
       "key": "c",
       "patterns": [
         "o-",
-        "a-",
+        "a-"
       ]
     }
   ],
   "words": [
     {
       "imse": "nanka",
-      "gloss": "head",
+      "definitions": [
+        "head"
+      ],
       "derivations": ["p"],
       "tags": ["body"]
     },
     {
       "imse": "ilka",
-      "gloss": "neck",
+      "definitions": [
+        "neck"
+      ],
       "derivations": ["p"],
       "tags": ["body"]
     },
     {
       "imse": "vij:a",
-      "gloss": "shoulder",
+      "definitions": [
+        "shoulder"
+      ],
       "derivations": ["p", "c"],
       "tags": ["body"]
     },
     {
       "imse": "hanat",
-      "gloss": "arm, from branch (of a tree)",,
+      "definitions": [
+        "branch (of a tree)",
+        "arm"
+      ],
       "derivations": ["p", "c"],
-      "tags": ["body", "metaphor"]
+      "tags": ["body", "metaphor", "nature"]
     },
     {
       "imse": "hañate",
-      "gloss": "bundled branches, restrained arms",
-      "derivations": ["p"],
-      "tags": ["body", "metaphor"]
+      "definitions": [
+        "bundled branches",
+        "restrained arms"
+      ],
+      "derivations": [],
+      "tags": ["body", "metaphor", "nature"]
     },
     {
       "imse": "lej:a",
-      "gloss": "hand",
+      "definitions": [
+        "hand"
+      ],
       "derivations": ["p", "c"],
       "tags": ["body"]
     },
     {
       "imse": "leja",
-      "gloss": "an unrestrained hand, striking or snatching",
+      "definitions": [
+        "an unrestrained hand, striking or snatching"
+      ],
       "derivations": ["p", "c"],
       "tags": ["body"]
     },
     {
       "imse": "egahon",
-      "gloss": "lit. ‘mother of breath’, torso",
+      "definitions": [
+        "lit. ‘mother of breath’, torso"
+      ],
       "derivations": ["p", "c"],
       "tags": ["body", "metaphor"]
     },
     {
       "imse": "neyri",
-      "gloss": "stomach",
+      "definitions": [
+        "stomach"
+      ],
       "derivations": ["p"],
       "tags": ["body"]
     },
     {
       "imse": "okare",
-      "gloss": "lit. eels, informal meaning guts",
+      "definitions": [
+        "eels",
+        "informal, meaning stomach/guts"
+      ],
       "derivations": ["p"],
-      "tags": ["body", "metaphor", "informal"]
+      "tags": ["body", "metaphor", "informal", "animals"]
     },
     {
       "imse": "nejri",
-      "gloss": "unrestrained/wobbly stomach",
+      "definitions": [
+        "unrestrained/wobbly stomach"
+      ],
       "derivations": ["p"],
       "tags": ["body"]
     },
     {
       "imse": "akama",
-      "gloss": "hip",
+      "definitions": [
+        "hip"
+      ],
       "derivations": ["p", "c"],
       "tags": ["body"]
     },
     {
       "imse": "jemboka",
-      "gloss": "leg, from root (of a tree)",
+      "definitions": [
+        "leg",
+        "root (of a tree)"
+      ],
       "derivations": ["p", "c"],
-      "tags": ["body", "metaphor"]
+      "tags": ["body", "metaphor", "nature"]
     },
     {
       "imse": "denda",
-      "gloss": "foot",
+      "definitions": [
+        "foot"
+      ],
       "derivations": ["p"],
       "tags": ["body"]
-    },
+    }
   ]
 }

@@ -18,6 +18,142 @@
   ],
   "words": [
     {
+      "imse": "ifren",
+      "definitions": [
+        "wire"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "ega",
+      "definitions": [
+        "mother"
+      ],
+      "derivations": ["p"],
+      "tags": ["original", "family"]
+    },
+    {
+      "imse": "gorima",
+      "definitions": [
+        "mass"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "has",
+      "definitions": [
+        "form"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "osa",
+      "definitions": [
+        "cot"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "imbeya",
+      "definitions": [
+        "dreams "
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "leyana",
+      "definitions": [
+        "day"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "lenar",
+      "definitions": [
+        "night"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "dovi",
+      "definitions": [
+        "wind"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "risal",
+      "definitions": [
+        "experience"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "sen",
+      "definitions": [
+        "body"
+      ],
+      "derivations": ["p"],
+      "tags": ["original", "body"]
+    },
+    {
+      "imse": "asen",
+      "definitions": [
+        "glass"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "eyogo",
+      "definitions": [
+        "plateaus - should have plural ending?"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "staki",
+      "definitions": [
+        "ridges - should have plural ending and maybe not st cluster "
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "osoha",
+      "definitions": [
+        "quiet"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "icha",
+      "definitions": [
+        "flame"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
+      "imse": "os",
+      "definitions": [
+        "time"
+      ],
+      "derivations": ["p"],
+      "tags": ["original"]
+    },
+    {
       "imse": "nanka",
       "definitions": [
         "head"
@@ -39,7 +175,7 @@
         "shoulder"
       ],
       "derivations": ["p", "c"],
-      "tags": ["body"]
+      "tags": ["body", "original"]
     },
     {
       "imse": "hanat",
@@ -65,7 +201,7 @@
         "hand"
       ],
       "derivations": ["p", "c"],
-      "tags": ["body"]
+      "tags": ["body", "original"]
     },
     {
       "imse": "leja",

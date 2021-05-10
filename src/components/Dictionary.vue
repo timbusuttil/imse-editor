@@ -35,19 +35,27 @@ export default {
           if (def.includes(this.query)) englishMatch = true;
         });
 
-        // if any tags selected, check for matching tags
-        let hasMatchingTag = false;
-        if (this.activeTags.length !== 0) {
-          word.tags.forEach((tag) => {
-            if (this.activeTags.includes(tag)) hasMatchingTag = true;
-          });
-        } else {
-          hasMatchingTag = true;
-        }
+        // check if matches any selected tags
+        // let hasMatchingTag = false;
+        // if (this.activeTags.length !== 0) {
+        //   word.tags.forEach((tag) => {
+        //     if (this.activeTags.includes(tag)) hasMatchingTag = true;
+        //   });
+        // } else {
+        //   hasMatchingTag = true;
+        // }
+
+        // check if matches all selected tags
+        let tagsToMatch = JSON.parse(JSON.stringify(this.activeTags));
+        word.tags.forEach((tag) => {
+          let index = tagsToMatch.indexOf(tag);
+          if (index !== -1) tagsToMatch.splice(index, 1);
+        });
+        const tagMatch = tagsToMatch.length === 0;
 
         // return result
         return (
-          (imseMatch || englishMatch) && hasMatchingTag
+          (imseMatch || englishMatch) && tagMatch
         )
       });
     },

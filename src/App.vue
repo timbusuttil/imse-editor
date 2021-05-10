@@ -79,6 +79,8 @@
         <!-- character defs -->
         <CharacterDefs :font="selectedFont.key" ref="charDefs" />
       </svg>
+      <br>
+      <br>
       <Dictionary />
     </div>
   </div>

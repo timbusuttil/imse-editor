@@ -1,48 +1,34 @@
 {
   "derivations": [
     {
-      "name": "plurality",
-      "key": "p",
-      "patterns": [
-        {
-          "pattern": "-e",
-          "definition": "(plural)"
-        }
-      ]
+      "name": "plural",
+      "key": "plu",
+      "pattern": "-e",
+      "definition": "(plural)"
     },
     {
-      "name": "chirality",
-      "key": "c",
-      "patterns": [
-        {
-          "pattern": "o-",
-          "definition": "(left)"
-        },
-        {
-          "pattern": "a-",
-          "definition": "(right)"
-        }
-      ]
+      "name": "chiral (before)",
+      "key": "chi-b",
+      "pattern": "o-",
+      "definition": "(left)"
     },
     {
-      "name": "negation",
-      "key": "n",
-      "patterns": [
-        {
-          "pattern": "ne-",
-          "definition": "(negated)"
-        }
-      ]
+      "name": "chiral (after)",
+      "key": "chi-a",
+      "pattern": "a-",
+      "definition": "(right)"
+    },
+    {
+      "name": "negated",
+      "key": "neg",
+      "pattern": "ne-",
+      "definition": "(negated)"
     },
     {
       "name": "adjective",
-      "key": "a",
-      "patterns": [
-        {
-          "pattern": "-i",
-          "definition": "(adjective)"
-        }
-      ]
+      "key": "adj",
+      "pattern": "-i",
+      "definition": "(adjective)"
     }
   ],
   "words": [
@@ -53,7 +39,7 @@
       ],
       "derivations": [
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original", "elements"],
@@ -66,10 +52,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -82,10 +68,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original", "family"],
@@ -98,7 +84,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original"],
@@ -111,7 +97,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original"],
@@ -124,7 +110,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original"],
@@ -137,10 +123,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -153,10 +139,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -169,10 +155,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -185,10 +171,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original", "element"],
@@ -201,10 +187,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -217,7 +203,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original", "body"],
@@ -230,7 +216,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original"],
@@ -261,10 +247,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original"],
@@ -277,10 +263,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": ["original", "element"],
@@ -293,7 +279,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["original"],
@@ -306,7 +292,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["body"],
@@ -319,7 +305,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["body"],
@@ -332,10 +318,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body", "original"],
@@ -349,10 +338,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body", "metaphor", "nature"],
@@ -375,10 +367,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body", "original"],
@@ -391,10 +386,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body"],
@@ -407,12 +405,17 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c",
+          "key": "chi-a",
           "definitions": [
-            "chest",
+            "chest"
+          ]
+        },
+        {
+          "key": "chi-b",
+          "definitions": [
             "back"
           ]
         }
@@ -427,7 +430,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["body"],
@@ -440,14 +443,14 @@
       ],
       "derivations": [
         {
-          "key": "p",
+          "key": "plu",
           "definitions": [
             "eel (plural)",
             "informal, meaning internal organs/guts"
           ]
         },
         {
-          "key": "a",
+          "key": "adj",
           "definitions": [
             "informal, brave"
           ]
@@ -463,7 +466,7 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         }
       ],
       "tags": ["body"],
@@ -476,13 +479,16 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
         },
         {
-          "key": "a"
+          "key": "chi-b"
+        }
+        {
+          "key": "adj"
         }
       ],
       "tags": ["body"],
@@ -496,10 +502,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body", "metaphor", "nature"],
@@ -512,10 +521,13 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "c"
+          "key": "chi-a"
+        },
+        {
+          "key": "chi-b"
         }
       ],
       "tags": ["body"],
@@ -528,7 +540,7 @@
       ],
       "derivations": [
         {
-          "key": "a"
+          "key": "adj"
         }
       ],
       "tags": [],
@@ -550,7 +562,7 @@
       ],
       "derivations": [
         {
-          "key": "n",
+          "key": "neg",
           "definitions": [
             "bad/rotten apple"
           ]
@@ -566,10 +578,10 @@
       ],
       "derivations": [
         {
-          "key": "p"
+          "key": "plu"
         },
         {
-          "key": "a",
+          "key": "adj",
           "definitions": [
             "sharp",
             "cutting"
@@ -585,7 +597,7 @@
       ],
       "derivations": [
         {
-          "key": "p",
+          "key": "plu",
           "definitions": [
             "first person plural pronoun, me"
           ]
@@ -600,7 +612,7 @@
       ],
       "derivations": [
         {
-          "key": "p",
+          "key": "plu",
           "definitions": [
             "second person plural pronoun, you"
           ]
@@ -615,7 +627,7 @@
       ],
       "derivations": [
         {
-          "key": "p",
+          "key": "plu",
           "definitions": [
             "third person plural pronoun, them"
           ]

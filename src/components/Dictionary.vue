@@ -18,6 +18,8 @@
         <ol>
           <li v-for="definition in word.definitions" :key="definition">{{ definition }}</li>
         </ol>
+        <p>Derivations:</p>
+        <pre>{{ word.derivations }}</pre>
         <p v-if="word.tags.length > 0">Tags:
           <span v-for="(tag, i) in word.tags" :key="tag">{{ tag }}{{ i !== word.tags.length - 1 ? ', ' : '' }}</span>
         </p>

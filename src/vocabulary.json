@@ -51,7 +51,11 @@
       "definitions": [
         "earth, lit. mother of bodies"
       ],
-      "derivations": [],
+      "derivations": [
+        {
+          "key": "a"
+        }
+      ],
       "tags": ["original", "elements"],
       "seeAlso": ["sen", "ega"]
     },
@@ -63,6 +67,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -76,6 +83,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original", "family"],
@@ -128,6 +138,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -141,6 +154,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -154,6 +170,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -167,6 +186,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original", "element"],
@@ -180,6 +202,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -237,6 +262,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original"],
@@ -250,6 +278,9 @@
       "derivations": [
         {
           "key": "p"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["original", "element"],
@@ -414,6 +445,12 @@
             "eel (plural)",
             "informal, meaning internal organs/guts"
           ]
+        },
+        {
+          "key": "a",
+          "definitions": [
+            "informal, brave"
+          ]
         }
       ],
       "tags": ["body", "metaphor", "informal", "animals"],
@@ -443,6 +480,9 @@
         },
         {
           "key": "c"
+        },
+        {
+          "key": "a"
         }
       ],
       "tags": ["body"],
@@ -486,7 +526,11 @@
       "definitions": [
         "danger, lit. multiple threats"
       ],
-      "derivations": [],
+      "derivations": [
+        {
+          "key": "a"
+        }
+      ],
       "tags": [],
       "seeAlso": ["egakote"]
     },

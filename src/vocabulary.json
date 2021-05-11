@@ -522,12 +522,13 @@
       ],
       "derivations": [
         {
-          "key": "p",
+          "key": "p"
         },
         {
           "key": "a",
           "definitions": [
-            "sharp"
+            "sharp",
+            "cutting"
           ]
         }
       ],

@@ -11,12 +11,28 @@
     </div>
     <br>
     <label>{{ filteredVocabulary.length }} {{ filteredVocabulary.length === 1 ? 'result' : 'results' }}</label>
-    <pre>{{ filteredVocabulary }}</pre>
+    <div class="word-container">
+      <!-- <pre>{{ filteredVocabulary }}</pre> -->
+      <div v-for="word in filteredVocabulary" class="dictionary-entry" :key="word.imse">
+        <p>{{ word.imse }} ({{ clean(word.imse) }})</p>
+        <ol>
+          <li v-for="definition in word.definitions" :key="definition">{{ definition }}</li>
+        </ol>
+        <p v-if="word.tags.length > 0">Tags:
+          <span v-for="(tag, i) in word.tags" :key="tag">{{ tag }}{{ i !== word.tags.length - 1 ? ', ' : '' }}</span>
+        </p>
+        <p v-if="word.seeAlso.length > 0">See also:
+          <span v-for="(alsoWord, i) in word.seeAlso" :key="alsoWord">{{ alsoWord }}{{ i !== word.seeAlso.length - 1 ? ', ' : '' }}</span>
+        </p>
+        <!-- <pre>{{ word }}</pre> -->
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import vocabulary from '@/vocabulary.json';
+import { clean } from '@/parse';
 
 export default {
   data() {
@@ -78,6 +94,9 @@ export default {
       return result;
     },
   },
+  methods: {
+    clean: clean,
+  },
   mounted() {
     let result = {};
     this.allTags.forEach((tag) => {
@@ -89,4 +108,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.word-container {
+  padding-bottom: 50px;
+}
+
+.dictionary-entry {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
 </style>

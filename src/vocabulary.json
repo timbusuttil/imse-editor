@@ -4,178 +4,301 @@
       "name": "plurality",
       "key": "p",
       "patterns": [
-        "-e"
+        {
+          "pattern": "-e",
+          "definition": "(plural)"
+        }
       ]
     },
     {
       "name": "chirality",
       "key": "c",
       "patterns": [
-        "o-",
-        "a-"
+        {
+          "pattern": "o-",
+          "definition": "(left)"
+        },
+        {
+          "pattern": "a-",
+          "definition": "(right)"
+        }
+      ]
+    },
+    {
+      "name": "negation",
+      "key": "n",
+      "patterns": [
+        {
+          "pattern": "ne-",
+          "definition": "(negated)"
+        }
       ]
     }
   ],
   "words": [
     {
+      "imse": "egasen",
+      "definitions": [
+        "earth, lit. mother of bodies"
+      ],
+      "derivations": [],
+      "tags": ["original", "elements"],
+      "seeAlso": ["sen", "ega"]
+    },
+    {
       "imse": "ifren",
       "definitions": [
         "wire"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "ega",
       "definitions": [
         "mother"
       ],
-      "derivations": ["p"],
-      "tags": ["original", "family"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original", "family"],
+      "seeAlso": ["egahon"]
     },
     {
       "imse": "gorima",
       "definitions": [
         "mass"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "has",
       "definitions": [
         "form"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "osa",
       "definitions": [
         "cot"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
-    },
-    {
-      "imse": "imbeya",
-      "definitions": [
-        "dreams "
+      "derivations": [
+        {
+          "key": "p"
+        }
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
-      "imse": "leyana",
+      "imse": "imbej:a",
+      "definitions": [
+        "dream"
+      ],
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
+    },
+    {
+      "imse": "lej:ana",
       "definitions": [
         "day"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "lenar",
       "definitions": [
         "night"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "dovi",
       "definitions": [
         "wind"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "risal",
       "definitions": [
         "experience"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "sen",
       "definitions": [
         "body"
       ],
-      "derivations": ["p"],
-      "tags": ["original", "body"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original", "body"],
+      "seeAlso": ["egasen"]
     },
     {
       "imse": "asen",
       "definitions": [
-        "glass"
+        "glass, lit. after body (as in pottery)"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": ["sen"]
     },
     {
-      "imse": "eyogo",
+      "imse": "ej:ogo",
       "definitions": [
         "plateaus - should have plural ending?"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "staki",
       "definitions": [
         "ridges - should have plural ending and maybe not st cluster "
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "osoha",
       "definitions": [
         "quiet"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
-      "imse": "icha",
+      "imse": "ik:a",
       "definitions": [
         "flame"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original", "element"],
+      "seeAlso": []
     },
     {
       "imse": "os",
       "definitions": [
         "time"
       ],
-      "derivations": ["p"],
-      "tags": ["original"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["original"],
+      "seeAlso": []
     },
     {
       "imse": "nanka",
       "definitions": [
         "head"
       ],
-      "derivations": ["p"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
       "imse": "ilka",
       "definitions": [
         "neck"
       ],
-      "derivations": ["p"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
       "imse": "vij:a",
       "definitions": [
         "shoulder"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body", "original"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body", "original"],
+      "seeAlso": []
     },
     {
       "imse": "hanat",
@@ -183,8 +306,16 @@
         "branch (of a tree)",
         "arm"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body", "metaphor", "nature"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body", "metaphor", "nature"],
+      "seeAlso": []
     },
     {
       "imse": "hañate",
@@ -193,64 +324,119 @@
         "restrained arms"
       ],
       "derivations": [],
-      "tags": ["body", "metaphor", "nature"]
+      "tags": ["body", "metaphor", "nature"],
+      "seeAlso": []
     },
     {
       "imse": "lej:a",
       "definitions": [
         "hand"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body", "original"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body", "original"],
+      "seeAlso": []
     },
     {
       "imse": "leja",
       "definitions": [
-        "an unrestrained hand, striking or snatching"
+        "unrestrained hand, eg. striking or snatching"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
       "imse": "egahon",
       "definitions": [
         "lit. ‘mother of breath’, torso"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body", "metaphor"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c",
+          "definitions": [
+            "chest",
+            "back"
+          ]
+        }
+      ],
+      "tags": ["body", "metaphor"],
+      "seeAlso": []
     },
     {
-      "imse": "neyri",
+      "imse": "nej:ri",
       "definitions": [
         "stomach"
       ],
-      "derivations": ["p"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
-      "imse": "okare",
+      "imse": "okara",
       "definitions": [
-        "eels",
-        "informal, meaning stomach/guts"
+        "eel"
       ],
-      "derivations": ["p"],
-      "tags": ["body", "metaphor", "informal", "animals"]
+      "derivations": [
+        {
+          "key": "p",
+          "definitions": [
+            "eel (plural)",
+            "informal, meaning internal organs/guts"
+          ]
+        }
+      ],
+      "tags": ["body", "metaphor", "informal", "animals"],
+      "seeAlso": []
     },
     {
       "imse": "nejri",
       "definitions": [
         "unrestrained/wobbly stomach"
       ],
-      "derivations": ["p"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
       "imse": "akama",
       "definitions": [
         "hip"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
     },
     {
       "imse": "jemboka",
@@ -258,16 +444,66 @@
         "leg",
         "root (of a tree)"
       ],
-      "derivations": ["p", "c"],
-      "tags": ["body", "metaphor", "nature"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body", "metaphor", "nature"],
+      "seeAlso": []
     },
     {
       "imse": "denda",
       "definitions": [
         "foot"
       ],
-      "derivations": ["p"],
-      "tags": ["body"]
+      "derivations": [
+        {
+          "key": "p"
+        },
+        {
+          "key": "c"
+        }
+      ],
+      "tags": ["body"],
+      "seeAlso": []
+    },
+    {
+      "imse": "kote",
+      "definitions": [
+        "danger, lit. multiple threats"
+      ],
+      "derivations": [],
+      "tags": [],
+      "seeAlso": ["egakote"]
+    },
+    {
+      "imse": "egakote",
+      "definitions": [
+        "???, lit. mother of danger"
+      ],
+      "derivations": [],
+      "tags": [],
+      "seeAlso": ["kote", "ega"]
+    },
+    {
+      "imse": "imba",
+      "definitions": [
+        "apple"
+      ],
+      "derivations": [
+        {
+          "key": "n",
+          "definitions": [
+            "bad/rotten apple"
+          ]
+        }
+      ],
+      "tags": ["food"],
+      "seeAlso": ["imbej:a"]
     }
   ]
 }

@@ -3,9 +3,11 @@
     <label>Search (Imse and English)</label><br>
     <input v-model="query"><br><br>
     <label>Filter by tags</label><br>
-    <div v-for="tag in allTags" :key="tag">
-      <input type="checkbox" :id="`tag-${tag}`" v-model="tags[tag]">
-      <label :for="`tag-${tag}`">{{ tag }}</label><br>
+    <div style="columns: 5;">
+      <div v-for="tag in allTags" :key="tag" >
+        <input type="checkbox" :id="`tag-${tag}`" v-model="tags[tag]">
+        <label :for="`tag-${tag}`">{{ tag }}</label><br>
+      </div>
     </div>
     <br>
     <label>{{ filteredVocabulary.length }} {{ filteredVocabulary.length === 1 ? 'result' : 'results' }}</label>

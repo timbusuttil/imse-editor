@@ -33,6 +33,16 @@
           "definition": "(negated)"
         }
       ]
+    },
+    {
+      "name": "adjective",
+      "key": "a",
+      "patterns": [
+        {
+          "pattern": "-i",
+          "definition": "(adjective)"
+        }
+      ]
     }
   ],
   "words": [
@@ -504,6 +514,69 @@
       ],
       "tags": ["food"],
       "seeAlso": ["imbej:a"]
+    },
+    {
+      "imse": "lera",
+      "definitions": [
+        "cut"
+      ],
+      "derivations": [
+        {
+          "key": "p",
+        },
+        {
+          "key": "a",
+          "definitions": [
+            "sharp"
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "imse": "ro",
+      "definitions": [
+        "first person singular pronoun, me"
+      ],
+      "derivations": [
+        {
+          "key": "p",
+          "definitions": [
+            "first person plural pronoun, me"
+          ]
+        }
+      ],
+      "tags": ["pronouns"]
+    },
+    {
+      "imse": "ki",
+      "definitions": [
+        "second person singular pronoun, you"
+      ],
+      "derivations": [
+        {
+          "key": "p",
+          "definitions": [
+            "second person plural pronoun, you"
+          ]
+        }
+      ],
+      "tags": ["pronouns"]
+    },
+    {
+      "imse": "va",
+      "definitions": [
+        "second person singular pronoun, them"
+      ],
+      "derivations": [
+        {
+          "key": "p",
+          "definitions": [
+            "third person plural pronoun, them"
+          ]
+        }
+      ],
+      "tags": ["pronouns"]
     }
   ]
 }

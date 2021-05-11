@@ -102,8 +102,10 @@ export default {
   data() {
     return {
       input: 'jemboke gonboke\nki maika t:a\nodenda adenda\nki reva t:a',
-      fgCol: '#F18F01',
-      bgCol: '#006E90',
+      fgCol: '#2C4251',
+      bgCol: '#C1C1C1',
+      // fgCol: '#F18F01',
+      // bgCol: '#006E90',
       // fgCol: '#FABC3C',
       // bgCol: '#444054',
       // fgCol: '#EFECCA',

@@ -28,10 +28,20 @@
         <p>Effects</p>
         <input type="checkbox" id="dropShadow" v-model="effects.dropShadow.active">
         <label for="dropShadow">Drop shadow</label><br>
-        <input type="color" name="shadowCol" v-model="effects.dropShadow.color">
-        <label for="shadowCol">Shadow Colour</label><br>
-        <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.dropShadow.opacity">
-        <label for="bgCol">Shadow Opacity</label><br>
+        <div v-show="effects.dropShadow.active">
+          <input type="color" name="shadowCol" v-model="effects.dropShadow.color">
+          <label for="shadowCol">Shadow Colour</label><br>
+          <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.dropShadow.opacity">
+          <label for="bgCol">Shadow Opacity {{ effects.dropShadow.opacity }}</label><br>
+
+          <input type="number" name="dx" v-model="effects.dropShadow.dx">
+          <label for="dx">X Offset</label><br>
+          <input type="number" name="dy" v-model="effects.dropShadow.dy">
+          <label for="dy">Y Offset</label><br>
+          <input type="number" name="blur" min="0" v-model="effects.dropShadow.blur">
+          <label for="blur">Blur: {{ effects.dropShadow.blur }}</label><br>
+        </div>
+
         <hr>
 
         <p>Scaling & Positioning</p>
@@ -96,7 +106,7 @@
         <!-- filter defs -->
         <defs>
           <filter id="shadow">
-            <feDropShadow dx="5" dy="5" stdDeviation="0" :flood-color="effects.dropShadow.color" :flood-opacity="effects.dropShadow.opacity" />
+            <feDropShadow :dx="effects.dropShadow.dx" :dy="effects.dropShadow.dy" :stdDeviation="effects.dropShadow.blur" :flood-color="effects.dropShadow.color" :flood-opacity="effects.dropShadow.opacity" />
           </filter>
         </defs>
       </svg>
@@ -143,9 +153,12 @@ export default {
       fonts: [],
       effects: {
         dropShadow: {
-          active: true,
+          active: false,
           color: '#000000',
           opacity: 0.2,
+          dx: 5,
+          dy: 5,
+          blur: 0,
         },
       },
     }

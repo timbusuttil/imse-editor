@@ -17,12 +17,23 @@
         <label for="bgCol">Background Colour</label><br>
         <button @click="swapColours">Swap colours</button><br>
         <hr>
+
         <p>Font</p>
         <select v-model="selectedFont">
           <option v-for="font in fonts" :value="font" :key="font.key">{{ font.displayName }}</option>
         </select>
         <p>Designed by {{ selectedFont.designedBy }}</p>
         <hr>
+
+        <p>Effects</p>
+        <input type="checkbox" id="dropShadow" v-model="effects.dropShadow.active">
+        <label for="dropShadow">Drop shadow</label><br>
+        <input type="color" name="shadowCol" v-model="effects.dropShadow.color">
+        <label for="shadowCol">Shadow Colour</label><br>
+        <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.dropShadow.opacity">
+        <label for="bgCol">Shadow Opacity</label><br>
+        <hr>
+
         <p>Scaling & Positioning</p>
         <input type="number" name="canvasWidth" min="0" v-model="canvasDimensions.x">
         <label for="canvasWidth">Canvas Width</label><br>
@@ -42,14 +53,17 @@
           <label :for="`line-${i}`">Line {{ i+1 }}</label>
         </div>
         <hr>
+
         <p>Extras</p>
         <input type="checkbox" id="showAnnotations" v-model="showAnnotations">
         <label for="showAnnotations">Show Annotations</label><br>
         <hr>
+
         <p>Export</p>
         <button @click="exportAsSvg">Export as SVG</button><br>
         <button @click="exportAsPng">Export as PNG</button><br>
         <hr>
+
         <p><a href="https://www.notion.so/Imse-ta-Vira-ka-Os-o-d3b2cc8a0fa2474f9af19e4fb1da05eb" target="_blank">Imse ta Vira ka Os-o</a> designed by <a href="https://twitter.com/timbusuttil" target="_blank">Tim Busuttil</a></p>
       </div>
     </div>
@@ -63,7 +77,7 @@
         :height="canvasDimensions.y"
         :style="{ backgroundColor: bgCol, minWidth: `${canvasDimensions.x}px` }"
       >
-        <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`">
+        <g ref="allLines" :transform="`translate(${position.x}, ${position.y}) scale(${textScale * 0.01})`" :filter="svgFilter">
           <g v-for="(line, i) in parsedInput" :id="`line-group-${i}`" :transform="`translate(${i * 120}, ${i * -20 + lineOffsets[i] * 80})`" :key="i" >
             <g v-for="(character, j) in line" :transform="`translate(0, ${j * 80})`" :key="j">
               <use :href="`#${character.split('/')[0]}`" :fill="fgCol"></use>
@@ -78,6 +92,13 @@
 
         <!-- character defs -->
         <CharacterDefs :font="selectedFont.key" ref="charDefs" />
+
+        <!-- filter defs -->
+        <defs>
+          <filter id="shadow">
+            <feDropShadow dx="5" dy="5" stdDeviation="0" :flood-color="effects.dropShadow.color" :flood-opacity="effects.dropShadow.opacity" />
+          </filter>
+        </defs>
       </svg>
       <br>
       <br>
@@ -120,6 +141,13 @@ export default {
       showParsed: false,
       selectedFont: 'original',
       fonts: [],
+      effects: {
+        dropShadow: {
+          active: true,
+          color: '#000000',
+          opacity: 0.2,
+        },
+      },
     }
   },
   computed: {
@@ -179,6 +207,9 @@ export default {
     },
     parsedInput() {
       return parse(clean(this.input));
+    },
+    svgFilter() {
+      return this.effects.dropShadow.active ? 'url(#shadow)' : '';
     },
   },
   methods: {

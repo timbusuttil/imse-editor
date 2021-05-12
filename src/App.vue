@@ -26,22 +26,33 @@
         <hr>
 
         <p>Effects</p>
-        <input type="checkbox" id="dropShadow" v-model="effects.dropShadow.active">
-        <label for="dropShadow">Drop shadow</label><br>
-        <div v-show="effects.dropShadow.active">
-          <input type="color" name="shadowCol" v-model="effects.dropShadow.color">
+        <select v-model="activeEffect">
+          <option value="none">None</option>
+          <option v-for="effect in effects" :value="effect.key" :key="effect.key">{{ effect.name }}</option>
+        </select><br><br>
+        <!-- <input type="checkbox" id="shadow" v-model="effects.shadow.active"> -->
+        <!-- <label for="shadow">Drop shadow</label><br> -->
+        <!-- <div v-show="effects.shadow.active"> -->
+        <div v-show="activeEffect === 'shadow'">
+          <input type="color" name="shadowCol" v-model="effects.shadow.color">
           <label for="shadowCol">Shadow Colour</label><br>
-          <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.dropShadow.opacity">
-          <label for="bgCol">Shadow Opacity {{ effects.dropShadow.opacity }}</label><br>
-
-          <input type="number" name="dx" v-model="effects.dropShadow.dx">
+          <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.shadow.opacity">
+          <label for="bgCol">Shadow Opacity {{ effects.shadow.opacity }}</label><br>
+          <input type="number" name="dx" v-model="effects.shadow.dx">
           <label for="dx">X Offset</label><br>
-          <input type="number" name="dy" v-model="effects.dropShadow.dy">
+          <input type="number" name="dy" v-model="effects.shadow.dy">
           <label for="dy">Y Offset</label><br>
-          <input type="number" name="blur" min="0" v-model="effects.dropShadow.blur">
-          <label for="blur">Blur: {{ effects.dropShadow.blur }}</label><br>
+          <input type="number" name="blur" min="0" v-model="effects.shadow.blur">
+          <label for="blur">Blur: {{ effects.shadow.blur }}</label><br>
         </div>
 
+        <!-- <input type="checkbox" id="erode" v-model="effects.erode.active"> -->
+        <!-- <label for="erode">Erode/dilate</label><br> -->
+        <!-- <div v-show="effects.erode.active"> -->
+        <div v-show="activeEffect === 'erode'">
+          <input type="number" name="radius" v-model="effects.erode.radius">
+          <label for="radius">Radius: {{ effects.erode.radius }}</label><br>
+        </div>
         <hr>
 
         <p>Scaling & Positioning</p>
@@ -106,7 +117,10 @@
         <!-- filter defs -->
         <defs>
           <filter id="shadow">
-            <feDropShadow :dx="effects.dropShadow.dx" :dy="effects.dropShadow.dy" :stdDeviation="effects.dropShadow.blur" :flood-color="effects.dropShadow.color" :flood-opacity="effects.dropShadow.opacity" />
+            <feDropShadow :dx="effects.shadow.dx" :dy="effects.shadow.dy" :stdDeviation="effects.shadow.blur" :flood-color="effects.shadow.color" :flood-opacity="effects.shadow.opacity" />
+          </filter>
+          <filter id="erode">
+            <feMorphology :operator="effects.erode.radius < 0 ? 'erode' : 'dilate'" :radius="effects.erode.radius < 0 ? effects.erode.radius * -1 : effects.erode.radius"/>
           </filter>
         </defs>
       </svg>
@@ -151,8 +165,11 @@ export default {
       showParsed: false,
       selectedFont: 'original',
       fonts: [],
+      activeEffect: 'none',
       effects: {
-        dropShadow: {
+        shadow: {
+          name: 'Drop Shadow',
+          key: 'shadow',
           active: false,
           color: '#000000',
           opacity: 0.2,
@@ -160,6 +177,12 @@ export default {
           dy: 5,
           blur: 0,
         },
+        erode: {
+          name: 'Erode/dilate',
+          key: 'erode',
+          active: false,
+          radius: 4,
+        }
       },
     }
   },
@@ -222,8 +245,12 @@ export default {
       return parse(clean(this.input));
     },
     svgFilter() {
-      return this.effects.dropShadow.active ? 'url(#shadow)' : '';
-    },
+      if (this.activeEffect === 'none') {
+        return '';
+      } else {
+        return `url(#${this.activeEffect})`;
+      }
+    }
   },
   methods: {
     specialChar(type, character) {

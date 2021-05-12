@@ -37,7 +37,7 @@
           <input type="color" name="shadowCol" v-model="effects.shadow.color">
           <label for="shadowCol">Shadow Colour</label><br>
           <input type="range" min="0" max="1" name="bgCol" step="0.05" v-model="effects.shadow.opacity">
-          <label for="bgCol">Shadow Opacity {{ effects.shadow.opacity }}</label><br>
+          <label for="bgCol">Shadow Opacity: {{ effects.shadow.opacity }}</label><br>
           <input type="number" name="dx" v-model="effects.shadow.dx">
           <label for="dx">X Offset</label><br>
           <input type="number" name="dy" v-model="effects.shadow.dy">
@@ -52,6 +52,19 @@
         <div v-show="activeEffect === 'erode'">
           <input type="number" name="radius" v-model="effects.erode.radius">
           <label for="radius">Radius: {{ effects.erode.radius }}</label><br>
+        </div>
+
+        <!-- <input type="checkbox" id="displacement" v-model="effects.displacement.active"> -->
+        <!-- <label for="displacement">Displacement</label><br> -->
+        <!-- <div v-show="effects.displacement.active"> -->
+        <div v-show="activeEffect === 'displacement'">
+          <input type="range" min="0.001" max="0.1" name="baseFrequency" step="0.001" v-model="effects.displacement.baseFrequency">
+          <label for="baseFrequency">Base frequency: {{ effects.displacement.baseFrequency }}</label><br>
+          <input type="number" name="numOctaves" min="1" v-model="effects.displacement.numOctaves">
+          <label for="numOctaves">Num octaves: {{ effects.displacement.numOctaves }}</label><br>
+
+          <input type="number" name="scale" min="1" v-model="effects.displacement.scale">
+          <label for="scale">Scale: {{ effects.displacement.scale }}</label><br>
         </div>
         <hr>
 
@@ -122,6 +135,10 @@
           <filter id="erode">
             <feMorphology :operator="effects.erode.radius < 0 ? 'erode' : 'dilate'" :radius="effects.erode.radius < 0 ? effects.erode.radius * -1 : effects.erode.radius"/>
           </filter>
+          <filter id="displacement">
+            <feTurbulence type="fractalNoise" :baseFrequency="effects.displacement.baseFrequency" :numOctaves="effects.displacement.numOctaves" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" :scale="effects.displacement.scale" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
         </defs>
       </svg>
       <br>
@@ -182,6 +199,14 @@ export default {
           key: 'erode',
           active: false,
           radius: 4,
+        },
+        displacement: {
+          name: 'Displacement',
+          key: 'displacement',
+          active: false,
+          baseFrequency: 0.008,
+          numOctaves: 7,
+          scale: 20,
         }
       },
     }

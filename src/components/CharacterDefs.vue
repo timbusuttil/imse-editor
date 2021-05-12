@@ -279,7 +279,7 @@ export default {
       required: false,
       default: 'original',
       validator: (value) => {
-        return ['original', 'rounded', 'cursive'].indexOf(value) !== -1
+        return ['original', 'rounded', 'rounder', 'cursive'].indexOf(value) !== -1
       }
     }
   },

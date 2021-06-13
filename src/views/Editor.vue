@@ -315,7 +315,7 @@ export default {
 <style lang="css">
 #editor {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 90px);
 }
 
 #controls-parent {

@@ -16,15 +16,17 @@ export default {
 
 <style lang="css" scoped>
 nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
+  background: #fce4ec;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 a {

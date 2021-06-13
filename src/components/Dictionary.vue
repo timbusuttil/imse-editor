@@ -49,6 +49,9 @@ export default {
         // check imse word for match
         const imseMatch = word.imse.includes(this.query);
 
+        // check cleaned imse word for match
+        const imseCleanedMatch = clean(word.imse).includes(this.query);
+
         // check all english definitions for match
         let englishMatch = false;
         word.definitions.forEach((def) => {
@@ -75,7 +78,7 @@ export default {
 
         // return result
         return (
-          (imseMatch || englishMatch) && tagMatch
+          (imseMatch || imseCleanedMatch || englishMatch) && tagMatch
         )
       });
     },

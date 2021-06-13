@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="dictionary">
     <label>Search (Imse and English)</label><br>
     <input v-model="query"><br><br>
     <label>Filter by tags</label><br>
@@ -113,6 +113,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#dictionary {
+  
+}
+
 .word-container {
   padding-bottom: 50px;
 }
